@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AuraSense</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #f9f9f9, #e0f7fa);
+      margin: 0;
+      padding: 0;
+      transition: background 0.5s ease;
+    }
+
+    .dark-mode {
+      background: linear-gradient(to right, #263238, #37474f);
+      color: #fff;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .dark-mode .container {
+      background: #455a64;
+      color: #fff;
+    }
+
+    .header {
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 2.5em;
+      color: #009688;
+    }
+
+    .dark-mode .header h1 {
+      color: #80cbc4;
+    }
+
+    .logo {
+      width: 120px;
+      height: auto;
+      display: block;
+      margin: 0 auto 20px;
+    }
+
+    .intro {
+      text-align: center;
+      margin: 20px 0;
+      font-size: 1.2em;
+      color: #555;
+    }
+
+    .dark-mode .intro {
+      color: #cfd8dc;
+    }
+
+    .intro p {
+      margin: 10px 0;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    form label, form select, form input, form textarea, form button {
+      margin: 10px 0;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    form textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    form button {
+      background-color: #009688;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    form button:hover {
+      background-color: #00796b;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      color: #666;
+      font-size: 0.9em;
+    }
+
+    .dark-mode .footer {
+      color: #b0bec5;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+    }
+
+    .developer {
+      text-align: center;
+      margin-top: 30px;
+      font-style: italic;
+      color: #777;
+    }
+
+    .dark-mode .developer {
+      color: #b0bec5;
+    }
+
+    #output {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 1.1em;
+      color: #444;
+    }
+
+    .dark-mode #output {
+      color: #e0f7fa;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+  <div class="container">
+    <div class="header">
+      <img src="image mood tracker.png" alt="Mood Tracked Logo" class="logo" />
+      <h1>🌱 AuraSense</h1>
+    </div>
+
+    <div class="intro">
+      <p>Select your mood and reflect on your day.</p>
+      <p>This Mood Tracker helps you stay connected with your emotions, energy, and well-being.</p>
+    </div>
+
+    <!-- Mood and Stress Level Selection -->
+    <form id="moodForm">
+      <label for="mood">😊 How do you feel today emotionally?</label>
+      <select id="mood" required>
+        <option value="happy">😄 Happy</option>
+        <option value="sad">😢 Sad</option>
+        <option value="anxious">😰 Anxious</option>
+        <option value="neutral">😐 Neutral</option>
+        <option value="stressed">😫 Stressed</option>
+      </select>
+
+      <label for="stress">😖 How much stress are you feeling?</label>
+      <select id="stress" required>
+        <option value="low">🟢 Low</option>
+        <option value="medium">🟡 Medium</option>
+        <option value="high">🔴 High</option>
+      </select>
+
+      <label for="sleep">😴 How many hours did you sleep last night?</label>
+      <input type="number" id="sleep" min="0" max="24" required />
+
+      <label for="energy">⚡ How energetic do you feel today?</label>
+      <select id="energy" required>
+        <option value="low">🔋 Low</option>
+        <option value="medium">🔋 Medium</option>
+        <option value="high">🔋 High</option>
+      </select>
+
+      <label for="nutrition">🥗 How balanced is your nutrition today?</label>
+      <select id="nutrition" required>
+        <option value="poor">🚫 Poor</option>
+        <option value="average">😐 Average</option>
+        <option value="good">✅ Good</option>
+      </select>
+
+      <label for="physicalActivity">🏃‍♀️ Did you do any physical activity today?</label>
+      <select id="physicalActivity" required>
+        <option value="none">🚶‍♂️ None</option>
+        <option value="light">🧘 Light</option>
+        <option value="moderate">🚴 Moderate</option>
+        <option value="intense">🏋️ Intense</option>
+      </select>
+
+      <label for="journal">📝 How was your day emotionally?</label>
+      <textarea id="journal" placeholder="Write about your day..." required></textarea>
+
+      <label for="gratitude">🙏 What are you grateful for today?</label>
+      <textarea id="gratitude" placeholder="Write your gratitude here..." required></textarea>
+
+      <button type="button" onclick="analyzeMood()">🔍 Analyze Mood</button>
+    </form>
+
+    <div id="output"></div>
+
+    <div class="developer">
+      Created with ❤️ by SIVATHMIKA C
+    </div>
+
+    <div class="footer">
+      <p>&copy; 2025 AuraSense. All rights reserved.</p>
+    </div>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const body = document.body;
+      body.classList.toggle('dark-mode');
+      const themeButton = document.querySelector('.theme-toggle');
+      themeButton.textContent = body.classList.contains('dark-mode') ? '🌞' : '🌙';
+    }
+
+    function saveMoodData(moodData) {
+      const savedData = JSON.parse(localStorage.getItem('moodData')) || [];
+      savedData.push(moodData);
+      localStorage.setItem('moodData', JSON.stringify(savedData));
+    }
+
+    function analyzeMood() {
+      const mood = document.getElementById('mood').value;
+      const energy = document.getElementById('energy').value;
+      const date = new Date().toLocaleDateString();
+
+      const moodData = {
+        mood,
+        energy,
+        date,
+        stress: document.getElementById('stress').value,
+        sleep: document.getElementById('sleep').value,
+        nutrition: document.getElementById('nutrition').value,
+        activity: document.getElementById('physicalActivity').value,
+        journal: document.getElementById('journal').value,
+        gratitude: document.getElementById('gratitude').value
+      };
+
+      saveMoodData(moodData);
+
+      const outputDiv = document.getElementById('output');
+      outputDiv.innerHTML = `📅 <strong>${date}</strong><br>🧠 Mood: <strong>${mood}</strong> | ⚡ Energy: <strong>${energy}</strong>`;
+    }
+  </script>
+
+</body>
+</html>
+
